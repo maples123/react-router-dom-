@@ -1,0 +1,10 @@
+.nav-top ul{
+    display:flex;
+    justify-content: flex-end;
+}
+.nav-top ul li{
+    width:60px;
+    line-height:60px;
+    text-align:center;
+    color:#fff;
+}

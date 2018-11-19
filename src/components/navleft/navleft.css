@@ -1,0 +1,15 @@
+.side-nav ul{
+    background:url("./icon.jpg") no-repeat 20px 3px;
+}
+.side-nav ul li{
+    height:52px;
+    padding-top:6px;
+    line-height:52px;
+    text-indent: 4.2rem;
+}
+.side-nav ul li a{
+    color:#fff;
+}
+.side-nav ul li a.active{
+    color:orangered;
+}

@@ -1,28 +1,65 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import echarts from 'echarts';
+import { BrowserRouter as Router, Route ,Switch} from "react-router-dom";
 import './App.css';
 
+import Layout from "./components/layout/index.jsx";
+import routes from "./router/index.js";
+
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render(){
+        return (
+            <Router>
+                <Switch>
+                    <Route
+                        path="/"
+                        render={() => {
+                            return (
+                                <Layout>
+                                    <Switch>
+                                        {
+                                            routes.map((item,index) => {
+                                                if(item.exact){
+                                                    return (
+                                                        <Route
+                                                            key={index}
+                                                            exact
+                                                            path={item.path}
+                                                            render={()=>{
+                                                                return (
+                                                                    <item.component
+                                                                        echarts={echarts}
+                                                                    ></item.component>
+                                                                )
+                                                            }}
+                                                        ></Route>
+                                                    )
+                                                }
+                                                return (
+                                                    <Route
+                                                        key={index}
+                                                        path={item.path}
+                                                        render={()=>{
+                                                            return (
+                                                                <item.component
+                                                                    echarts={echarts}
+                                                                ></item.component>
+                                                            )
+                                                        }}
+                                                    ></Route>
+                                                )
+                                            })
+                                        }
+                                    </Switch>
+                                </Layout>
+                            )
+                        }}
+                    >
+                    </Route>
+                </Switch>
+            </Router>
+        )
+    }
 }
 
 export default App;
